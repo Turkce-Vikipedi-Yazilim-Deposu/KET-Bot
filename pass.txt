@@ -1,3 +1,0 @@
-{
-    "KET Bot": "VGpCNGExbDZhRmhVYWxKU1V6Qk9RMVpxVmtOWFFUMDk="
-}
