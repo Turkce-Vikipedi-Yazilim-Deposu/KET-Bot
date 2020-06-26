@@ -54,7 +54,7 @@ while 1:
                     if blocked_now.seconds / 900 >= 1:
                         mavri.section_clear(wiki, title, section, summary, xx)
                     else:
-                        print("Gerekli süre geçmediği için atlandı.")
+                        print(vandal + " hakkındaki bildirim gerekli süre geçmediği için atlandı.")
 
 
                     ignore_page=mavri.content_of_page('tr.wikipedia', 'Kullanıcı:Evrifaessa Bot/KETB Karalistesi')
@@ -72,7 +72,7 @@ while 1:
                         mavri.section_clear(wiki, title, section, summary, xx)
 
                         
-                        ignore_page=mavri.content_of_page('tr.wikipedia', 'Kullanıcı:Evrifaessa Bot/KETB Karalistesi')
+                        ignore_page=mavri.content_of_page('tr.wikipedia', 'Kullanıcı:KET Bot/Yoksay')
                         ignore_list= re.split('\s*\*\s*', ignore_page)
                         if informer not in ignore_list:
                             message = '\n\n== Kullanıcı engel talebi bildirimi ==\nMerhaba. [[Özel:Katkılar/' + vandal + '|' + vandal + ']], siz bildirim yaptıktan sonra 24 saat geçmesine rağmen engellenmediği için sayfadan çıkartıldı. Bildirimde bulunduğunuz için teşekkürler. --~~~~'
@@ -82,7 +82,7 @@ while 1:
                         summary = '[[Özel:Katkılar/' + vandal + '|' + vandal + ']] çıkartıldı. Bildirim zaman aşımına uğradı.' + summary_ek
                         mavri.section_clear(wiki, title, section, summary, xx)
                         
-                        ignore_page=mavri.content_of_page('tr.wikipedia', 'Kullanıcı:Evrifaessa Bot/KETB Karalistesi')
+                        ignore_page=mavri.content_of_page('tr.wikipedia', 'Kullanıcı:KET Bot/Yoksay')
                         ignore_list= re.split('\s*\*\s*', ignore_page)
                         if informer not in ignore_list:
                             message = '\n\n== Kullanıcı engel talebi bildirimi ==\nMerhaba. [[Özel:Katkılar/' + vandal + '|' + vandal + ']], siz bildirim yaptıktan sonra 5 gün geçmesine rağmen engellenmediği için sayfadan çıkartıldı. Bildirimde bulunduğunuz için teşekkürler. --~~~~'
