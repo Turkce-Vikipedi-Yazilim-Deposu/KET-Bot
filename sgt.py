@@ -10,7 +10,7 @@ import platform
 import mavri
 
 wiki = 'tr.wikipedia'
-xx = mavri.login(wiki, 'Evrifaessa Bot')
+xx = mavri.login(wiki, 'KET Bot')
 title = 'Vikipedi:Sürüm gizleme talepleri'
 version = 'V3.0d'
 summary_ek = " (KET Bot, " + version + " running on " + platform.system() + "), ([[Kullanıcı mesaj:Evrifaessa|hata bildir]])"
