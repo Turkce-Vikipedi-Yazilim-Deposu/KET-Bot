@@ -10,39 +10,21 @@ import platform
 import mavri
 
 wiki = 'tr.wikipedia'
-xx = mavri.login(wiki, 'KET Bot')
-title = 'Vikipedi:Sayfa taşıma talepleri'
+xx = mavri.login(wiki, 'Evrifaessa Bot')
+title = 'Vikipedi:Sürüm gizleme talepleri'
 version = 'V3.0d'
 summary_ek = " (KET Bot, " + version + " running on " + platform.system() + "), ([[Kullanıcı mesaj:Evrifaessa|hata bildir]])"
 section = 1
 ignore_list=[]
 mpa = dict.fromkeys(range(32))
 
-monthList = [
-    'Ocak', 
-    'Şubat', 
-    'Mart', 
-    'Nisan', 
-    'Mayıs', 
-    'Haziran', 
-    'Temmuz', 
-    'Ağustos', 
-    'Eylül', 
-    'Ekim', 
-    'Kasım', 
-    'Aralık'
-]
-
 while 1:
-        currentMonth = monthList[datetime.now().month-1]
-        currentYear = datetime.now().year
-        archivePage = "Vikipedi:Sayfa_taşıma_talepleri/Arşiv/" + str(currentYear) + "/" + currentMonth
         now = datetime.now()
         content = mavri.content_of_section(wiki, title, section, xx)
 
         if content != '':
-            timestamp = re.findall('\{\{\s*User:Evrifaessa\/STT\s*\|\s*([^\|\}]*)\s*\|\s*[^\|\}]*\s*\}\}', content)
-            informer = re.findall('\{\{\s*User:Evrifaessa\/STT\s*\|\s*[^\|\}]*\s*\|\s*([^\|\}]*)\s*\}\}', content)
+            timestamp = re.findall('\{\{\s*User:Evrifaessa\/SGT\s*\|\s*([^\|\}]*)\s*\|\s*[^\|\}]*\s*\}\}', content)
+            informer = re.findall('\{\{\s*User:Evrifaessa\/SGT\s*\|\s*[^\|\}]*\s*\|\s*([^\|\}]*)\s*\}\}', content)
             if timestamp and informer:
                 timestamp = timestamp[0]
                 informer = informer[0]
@@ -53,9 +35,7 @@ while 1:
 
                 if resolved:
                     if diff.total_seconds() > 60 * 60 * 24:
-                        summary = 'Sayfa taşıma talebi sonuçlandırılmış - ' + summary_ek
-                        archiveSummary = 'Sonuçlandırılan sayfa taşıma talebi arşivleniyor - ' + summary_ek
-                        mavri.appendtext_on_page(wiki, archivePage, "\n" + content, archiveSummary, xx)
+                        summary = 'Sürüm gizleme talebi sonuçlandırılmış - ' + summary_ek
                         mavri.section_clear(wiki, title, section, summary, xx)
                     else:
                         print('Talep sonuçlandırılmış ama gereken süre geçmemiş, arşivlenmiyor.')
