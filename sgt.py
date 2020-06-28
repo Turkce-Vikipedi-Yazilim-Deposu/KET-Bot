@@ -10,10 +10,11 @@ import platform
 import mavri
 
 wiki = 'tr.wikipedia'
-xx = mavri.login(wiki, 'KET Bot')
+username = 'Arşivleyici'
+xx = mavri.login(wiki, username)
 title = 'Vikipedi:Sürüm gizleme talepleri'
 version = 'V3.0e'
-summary_ek = " (KET Bot, " + version + " running on " + platform.system() + "), ([[Kullanıcı mesaj:Evrifaessa|hata bildir]])"
+summary_ek = " (" + username + ", " + version + " running on " + platform.system() + "), ([[Kullanıcı mesaj:Evrifaessa|hata bildir]])"
 section = 1
 ignore_list=[]
 mpa = dict.fromkeys(range(32))
