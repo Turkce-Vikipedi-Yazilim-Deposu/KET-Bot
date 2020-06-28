@@ -12,7 +12,7 @@ import mavri
 wiki = 'tr.wikipedia'
 xx = mavri.login(wiki, 'KET Bot')
 title = 'Vikipedi:Kullanıcı engelleme talepleri'
-version = 'V3.0d'
+version = 'V3.0e'
 summary_ek = " (KET Bot, " + version + " running on " + platform.system() + "), ([[Kullanıcı mesaj:Evrifaessa|hata bildir]])"
 section = 1
 ignore_list=[]
