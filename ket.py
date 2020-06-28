@@ -12,7 +12,7 @@ import mavri
 wiki = 'tr.wikipedia'
 xx = mavri.login(wiki, 'KET Bot')
 title = 'Vikipedi:Kullanıcı engelleme talepleri'
-version = 'V3.0b'
+version = 'V3.0c'
 summary_ek = " (KET Bot, " + version + " running on " + platform.system() + "), ([[Kullanıcı mesaj:Evrifaessa|hata bildir]])"
 section = 1
 ignore_list=[]
@@ -65,7 +65,7 @@ while 1:
                         if informer not in ignore_list and blocked_now.seconds / 900 >= 1:
                             message = '\n\n== Kullanıcı Engel Talebi bildirimi ==\nMerhaba. [[Özel:Katkılar/' + vandal + '|' + vandal + ']], siz bildirim yaptıktan ' + elapsed_time + ' saat sonra [[Kullanıcı mesaj:' + by + '|' + by + ']] tarafından engellendi. Engel açıklaması :' + reason + '. Bildirimde bulunduğunuz için teşekkürler.--~~~~'
                             summary = '[[Özel:Katkılar/' + vandal + '|' + vandal + ']], [[Kullanıcı mesaj:' + by + '|' + by + ']] tarafından engellendi.' + summary_ek
-                            mavri.sent_message(wiki, 'Kullanıcı mesaj:' + informer, message, summary, xx)
+                            mavri.send_message(wiki, 'Kullanıcı mesaj:' + informer, message, summary, xx)
                     else:
                         now = datetime.now()
                         diff = now - not_time
@@ -80,7 +80,7 @@ while 1:
                             if informer not in ignore_list:
                                 message = '\n\n== Kullanıcı engel talebi bildirimi ==\nMerhaba. [[Özel:Katkılar/' + vandal + '|' + vandal + ']], siz bildirim yaptıktan sonra 24 saat geçmesine rağmen engellenmediği için sayfadan çıkartıldı. Bildirimde bulunduğunuz için teşekkürler. --~~~~'
                                 summary = '[[Özel:Katkılar/' + vandal + '|' + vandal + ']] bildirimi zaman aşımına uğradı.' + summary_ek
-                                mavri.sent_message(wiki, 'Kullanıcı mesaj:' + informer, message, summary, xx)
+                                mavri.send_message(wiki, 'Kullanıcı mesaj:' + informer, message, summary, xx)
                         if IP == 0 and diff.total_seconds() > 60 * 60 * 24 * 5:
                             summary = '[[Özel:Katkılar/' + vandal + '|' + vandal + ']] çıkartıldı. Bildirim zaman aşımına uğradı.' + summary_ek
                             mavri.section_clear(wiki, title, section, summary, xx)
@@ -90,7 +90,7 @@ while 1:
                             if informer not in ignore_list:
                                 message = '\n\n== Kullanıcı engel talebi bildirimi ==\nMerhaba. [[Özel:Katkılar/' + vandal + '|' + vandal + ']], siz bildirim yaptıktan sonra 5 gün geçmesine rağmen engellenmediği için sayfadan çıkartıldı. Bildirimde bulunduğunuz için teşekkürler. --~~~~'
                                 summary = '[[Özel:Katkılar/' + vandal + '|' + vandal + ']] bildirimi zaman aşımına uğradı.' + summary_ek
-                                mavri.sent_message(wiki, 'Kullanıcı mesaj:' + informer, message, summary, xx)
+                                mavri.send_message(wiki, 'Kullanıcı mesaj:' + informer, message, summary, xx)
             else:
                 mavri.section_clear(wiki, title, section, '{{Vandal|XXXX}} içermeyen başlık temizlendi.' + summary_ek, xx)
             section += 1

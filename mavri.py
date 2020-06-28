@@ -49,7 +49,7 @@ def wikibase_item(wiki, title):
         return ''
 
 
-def sent_message(wiki, title, appendtext, summary, xx):
+def send_message(wiki, title, appendtext, summary, xx):
     return appendtext_on_page(wiki, title, appendtext, summary, xx)
 
 
