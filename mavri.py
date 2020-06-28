@@ -16,7 +16,7 @@ def login(wiki, username):
     full_path = os.path.realpath(__file__)
     with open(os.path.dirname(full_path) + '/.pass') as data_file:
         data = json.load(data_file)
-    passw = data[username].decode('base64').decode('base64').decode('base64').decode('UTF-8')
+    passw = data[username.decode('UTF-8')].decode('base64').decode('base64').decode('base64').decode('UTF-8')
 
     payload = {'action': 'query', 'format': 'json', 'utf8': '', 'meta': 'tokens', 'type': 'login'}
     r1 = requests.post('https://' + wiki + '.org/w/api.php', data=payload)
