@@ -56,8 +56,8 @@ while 1:
                     if diff.total_seconds() > 60 * 60 * 48:
                         summary = 'Devriyelik başvurusu sonuçladırılmış - ' + summary_ek
                         archiveSummary = 'Sonuçlandırılan devriyelik başvurusu arşivleniyor - ' + summary_ek
-                        mavri.appendtext_on_page(wiki, archivePage, "\n" + content, archiveSummary, xx)
                         mavri.section_clear(wiki, title, section, summary, xx)
+                        mavri.appendtext_on_page(wiki, archivePage, "\n" + content, archiveSummary, xx)
                     else:
                         print('Başvuru sonuçlandırılmış ama gereken süre geçmemiş, arşivlenmiyor.')
                 else:
@@ -65,4 +65,4 @@ while 1:
             section += 1
         else:
             section = 1
-            time.sleep(60)
+        time.sleep(60)
