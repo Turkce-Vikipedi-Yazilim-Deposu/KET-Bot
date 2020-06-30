@@ -37,8 +37,10 @@ while 1:
     now = datetime.now()
     content = mavri.content_of_page(wiki, title)
 
+    regex = r"(?<=Silinmeye aday sayfalar/)[^}]*"
+
     if content != '{{/Başlık}}' and content != '{{/Başlık}}\n== Tartışmalar ==':
-        pages = re.findall(r"(?<=Silinmeye aday sayfalar/)[^}]*", content)
+        pages = re.findall(regex.decode('UTF-8'), content)
         for page in pages:
             pageContent = mavri.content_of_page(wiki, "Vikipedi:Silinmeye aday sayfalar/" + page)
             timestampMonth = monthList[now.month-1]

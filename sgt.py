@@ -35,7 +35,7 @@ while 1:
                 diff = now - not_time
 
                 if resolved:
-                    if diff.total_seconds() > 60 * 60 * 24:
+                    if diff.total_seconds() > 60 * 60 * 12:
                         summary = 'Sürüm gizleme talebi sonuçlandırılmış - ' + summary_ek
                         mavri.section_clear(wiki, title, section, summary, xx)
                     else:
@@ -45,4 +45,4 @@ while 1:
             section += 1
         else:
             section = 1
-            time.sleep(60)
+            time.sleep(10)
