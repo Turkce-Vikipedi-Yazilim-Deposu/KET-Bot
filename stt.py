@@ -53,7 +53,7 @@ while 1:
                 diff = now - not_time
 
                 if resolved:
-                    if diff.total_seconds() > 60 * 60 * 24:
+                    if diff.total_seconds() > 60 * 60 * 12:
                         summary = 'Sayfa taşıma talebi sonuçlandırılmış - ' + summary_ek
                         archiveSummary = 'Sonuçlandırılan sayfa taşıma talebi arşivleniyor - ' + summary_ek
                         mavri.appendtext_on_page(wiki, archivePage, "\n" + content, archiveSummary, xx)
