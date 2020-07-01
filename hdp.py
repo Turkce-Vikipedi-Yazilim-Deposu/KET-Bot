@@ -44,12 +44,12 @@ while 1:
         if timestamp and informer:
             timestamp = timestamp[0]
             informer = informer[0]
-            timestampMonth = monthList[datetime.now().month-1]
-            timestampYear = datetime.now().year
-            archivePage = "Vikipedi:Hizmetli duyuru panosu/Kayıt/" + str(timestampYear) + " " + timestampMonth
             contentLow = content.lower()
             not_time = datetime(int(timestamp[:4]), int(timestamp[4:6]), int(timestamp[6:8]), int(timestamp[8:10]), int(timestamp[10:12]), int(timestamp[12:14]))
             diff = now - not_time
+            currentMonth = monthList[not_time.month-1]
+            currentYear = not_time.year
+            archivePage = "Vikipedi:Hizmetli duyuru panosu/Kayıt/" + str(currentYear) + "/" + currentMonth
 
             if diff.total_seconds() > 60 * 60 * 24 * 3:
                 summary = 'Üzerinden 3 gün geçen talep arşivleniyor - ' + summary_ek
