@@ -35,9 +35,6 @@ monthList = [
 ]
 
 while 1:
-        currentMonth = monthList[datetime.now().month-1]
-        currentYear = datetime.now().year
-        archivePage = "Vikipedi:Sayfa_taşıma_talepleri/Arşiv/" + str(currentYear) + "/" + currentMonth
         now = datetime.now()
         content = mavri.content_of_section(wiki, title, section, xx)
 
@@ -51,6 +48,9 @@ while 1:
                 resolved = "{{yapıldı}}" in contentLow or "{{done}}" in contentLow or "{{yapılmadı}}" in contentLow or "{{yapılmadı2}}" in contentLow or "{{yapılmadı ve yapılmayacak}}" in contentLow 
                 not_time = datetime(int(timestamp[:4]), int(timestamp[4:6]), int(timestamp[6:8]), int(timestamp[8:10]), int(timestamp[10:12]), int(timestamp[12:14]))
                 diff = now - not_time
+                currentMonth = monthList[not_time.month-1]
+                currentYear = not_time.year
+                archivePage = "Vikipedi:Sayfa_taşıma_talepleri/Arşiv/" + str(currentYear) + "/" + currentMonth
 
                 if resolved:
                     if diff.total_seconds() > 60 * 60 * 12:
