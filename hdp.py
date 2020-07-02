@@ -51,8 +51,35 @@ while 1:
             currentYear = not_time.year
             archivePage = "Vikipedi:Hizmetli duyuru panosu/Kayıt/" + str(currentYear) + "/" + currentMonth
 
-            if diff.total_seconds() > 60 * 60 * 24 * 3:
-                summary = 'Üzerinden 3 gün geçen talep arşivleniyor - ' + summary_ek
+            content2 = content
+
+            content2 = content2.replace("Ocak", "January")
+            content2 = content2.replace("Şubat", "February")
+            content2 = content2.replace("Mart", "March")
+            content2 = content2.replace("Nisan", "April")
+            content2 = content2.replace("Mayıs", "May")
+            content2 = content2.replace("Haziran", "June")
+            content2 = content2.replace("Temmuz", "July")
+            content2 = content2.replace("Ağustos", "August")
+            content2 = content2.replace("Eylül", "September")
+            content2 = content2.replace("Ekim", "October")
+            content2 = content2.replace("Kasım", "November")
+            content2 = content2.replace("Aralık", "December")
+
+            regex = r"\d{2}\.\d{2}\,\s\d{1,2}\s\w+\s\d{4}\s\(UTC\)"
+            matches = re.finditer(regex, content2.decode('UTF-8'), re.MULTILINE)
+
+            signatureTimes = []
+
+            for matchNum, match in enumerate(matches, start=1):
+                date_time_obj = datetime.strptime(str(match.group()), '%H.%M, %d %B %Y (%Z)')
+                signatureTimes.append(date_time_obj)
+            
+            youngest = min(dt for dt in signatureTimes if dt < now)
+            youngestDiff = now - youngest
+
+            if diff.total_seconds() > 60 * 60 * 24 * 15 and youngestDiff.total_seconds() > 60 * 60 * 24:
+                summary = 'Üzerinden 15 gün geçen talep arşivleniyor - ' + summary_ek
                 archiveSummary = 'Sonuçlandırılan talep arşivleniyor - ' + summary_ek
                 mavri.appendtext_on_page(wiki, archivePage, "\n" + content, archiveSummary, xx)
                 mavri.section_clear(wiki, title, section, summary, xx)

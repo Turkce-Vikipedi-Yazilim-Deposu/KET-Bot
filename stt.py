@@ -52,8 +52,35 @@ while 1:
                 currentYear = not_time.year
                 archivePage = "Vikipedi:Sayfa_taşıma_talepleri/Arşiv/" + str(currentYear) + "/" + currentMonth
 
+                content2 = content
+
+                content2 = content2.replace("Ocak", "January")
+                content2 = content2.replace("Şubat", "February")
+                content2 = content2.replace("Mart", "March")
+                content2 = content2.replace("Nisan", "April")
+                content2 = content2.replace("Mayıs", "May")
+                content2 = content2.replace("Haziran", "June")
+                content2 = content2.replace("Temmuz", "July")
+                content2 = content2.replace("Ağustos", "August")
+                content2 = content2.replace("Eylül", "September")
+                content2 = content2.replace("Ekim", "October")
+                content2 = content2.replace("Kasım", "November")
+                content2 = content2.replace("Aralık", "December")
+
+                regex = r"\d{2}\.\d{2}\,\s\d{1,2}\s\w+\s\d{4}\s\(UTC\)"
+                matches = re.finditer(regex, content2.decode('UTF-8'), re.MULTILINE)
+
+                signatureTimes = []
+
+                for matchNum, match in enumerate(matches, start=1):
+                    date_time_obj = datetime.strptime(str(match.group()), '%H.%M, %d %B %Y (%Z)')
+                    signatureTimes.append(date_time_obj)
+                
+                youngest = min(dt for dt in signatureTimes if dt < now)
+                youngestDiff = now - youngest
+
                 if resolved:
-                    if diff.total_seconds() > 60 * 60 * 12:
+                    if diff.total_seconds() > 60 * 60 * 12 and youngestDiff.total_seconds() >= 60 * 60 * 12:
                         summary = 'Sayfa taşıma talebi sonuçlandırılmış - ' + summary_ek
                         archiveSummary = 'Sonuçlandırılan sayfa taşıma talebi arşivleniyor - ' + summary_ek
                         mavri.appendtext_on_page(wiki, archivePage, "\n" + content, archiveSummary, xx)
