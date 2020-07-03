@@ -15,7 +15,7 @@ title = 'Vikipedi:Kullanıcı engelleme talepleri'
 version = 'V3.0g'
 summary_ek = " (KET Bot, " + version + " running on " + platform.system() + "), ([[Kullanıcı mesaj:Evrifaessa|hata bildir]])"
 section = 1
-ignore_list=[]
+localignorelist=["Dr. Coal"]
 mpa = dict.fromkeys(range(32))
 
 while 1:
@@ -77,7 +77,7 @@ while 1:
                             
                             ignore_page=mavri.content_of_page('tr.wikipedia', 'Kullanıcı:KET Bot/Yoksay')
                             ignore_list= re.split('\s*\*\s*', ignore_page)
-                            if informer not in ignore_list:
+                            if informer not in ignore_list and informer not in localignorelist:
                                 message = '\n\n== Kullanıcı engel talebi bildirimi ==\nMerhaba. [[Özel:Katkılar/' + vandal + '|' + vandal + ']], siz bildirim yaptıktan sonra 24 saat geçmesine rağmen engellenmediği için sayfadan çıkartıldı. Bildirimde bulunduğunuz için teşekkürler. --~~~~'
                                 summary = '[[Özel:Katkılar/' + vandal + '|' + vandal + ']] bildirimi zaman aşımına uğradı.' + summary_ek
                                 mavri.send_message(wiki, 'Kullanıcı mesaj:' + informer, message, summary, xx)
