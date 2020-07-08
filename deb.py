@@ -12,7 +12,7 @@ import mavri
 wiki = 'tr.wikipedia'
 username = 'Arşivleyici'
 xx = mavri.login(wiki, username)
-title = 'Kullanıcı:Evrifaessa/sandbox7'
+title = 'Vikipedi:Devriyelik başvurusu'
 version = 'V3.0g'
 summary_ek = " (" + username + ", " + version + " running on " + platform.system() + "), ([[Kullanıcı mesaj:Evrifaessa|hata bildir]])"
 section = 1
@@ -49,6 +49,7 @@ while 1:
                 informer = informer[0]
                 contentLow = content.lower()
                 resolved = "{{yapıldı}}" in contentLow or "{{done}}" in contentLow or "{{yapılmadı}}" in contentLow or "{{yapılmadı2}}" in contentLow or "{{yapılmadı ve yapılmayacak}}" in contentLow 
+                pinned = "{{mesaj sabitle}}" in contentLow or "{{pin message}}" in contentLow or "{{mesaj_sabitle}}" in contentLow or "{{pin_message}}" in contentLow
                 not_time = datetime(int(timestamp[:4]), int(timestamp[4:6]), int(timestamp[6:8]), int(timestamp[8:10]), int(timestamp[10:12]), int(timestamp[12:14]))
                 diff = now - not_time
                 content2 = content
@@ -80,10 +81,13 @@ while 1:
 
                 if resolved:
                     if diff.total_seconds() > 60 * 60 * 72 and youngestDiff.total_seconds() >= 60 * 60 * 6:
-                        summary = 'Devriyelik başvurusu sonuçladırılmış - ' + summary_ek
-                        archiveSummary = 'Sonuçlandırılan devriyelik başvurusu arşivleniyor - ' + summary_ek
-                        mavri.section_clear(wiki, title, section, summary, xx)
-                        mavri.appendtext_on_page(wiki, archivePage, "\n" + content, archiveSummary, xx)
+                        if pinned == False:
+                            summary = 'Devriyelik başvurusu sonuçladırılmış - ' + summary_ek
+                            archiveSummary = 'Sonuçlandırılan devriyelik başvurusu arşivleniyor - ' + summary_ek
+                            mavri.section_clear(wiki, title, section, summary, xx)
+                            mavri.appendtext_on_page(wiki, archivePage, "\n" + content, archiveSummary, xx)
+                        else:
+                            print('Tartışma sabitlenmiş, arşivlenmiyor.')
                     else:
                         print('Başvuru sonuçlandırılmış ama gereken süre geçmemiş, arşivlenmiyor.')
                 else:

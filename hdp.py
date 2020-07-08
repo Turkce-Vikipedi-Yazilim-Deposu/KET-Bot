@@ -49,6 +49,7 @@ while 1:
             diff = now - not_time
             currentMonth = monthList[not_time.month-1]
             currentYear = not_time.year
+            pinned = "{{mesaj sabitle}}" in contentLow or "{{pin message}}" in contentLow or "{{mesaj_sabitle}}" in contentLow or "{{pin_message}}" in contentLow
             archivePage = "Vikipedi:Hizmetli duyuru panosu/Kayıt/" + str(currentYear) + "/" + currentMonth
 
             content2 = content
@@ -79,10 +80,13 @@ while 1:
             youngestDiff = now - youngest
 
             if diff.total_seconds() > 60 * 60 * 24 * 15 and youngestDiff.total_seconds() > 60 * 60 * 24:
-                summary = 'Üzerinden 15 gün geçen talep arşivleniyor - ' + summary_ek
-                archiveSummary = 'Sonuçlandırılan talep arşivleniyor - ' + summary_ek
-                mavri.appendtext_on_page(wiki, archivePage, "\n" + content, archiveSummary, xx)
-                mavri.section_clear(wiki, title, section, summary, xx)
+                if pinned == False:
+                    summary = 'Üzerinden 15 gün geçen talep arşivleniyor - ' + summary_ek
+                    archiveSummary = 'Sonuçlandırılan talep arşivleniyor - ' + summary_ek
+                    mavri.appendtext_on_page(wiki, archivePage, "\n" + content, archiveSummary, xx)
+                    mavri.section_clear(wiki, title, section, summary, xx)
+                else:
+                    print('Tartışma sabitlenmiş, arşivlenmiyor.')
             else:
                 print('Gerekli süre geçmemiş, arşivlenmiyor.')
             section += 1

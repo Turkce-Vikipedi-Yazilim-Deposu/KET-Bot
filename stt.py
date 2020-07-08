@@ -46,6 +46,7 @@ while 1:
                 informer = informer[0]
                 contentLow = content.lower()
                 resolved = "{{yapıldı}}" in contentLow or "{{done}}" in contentLow or "{{yapılmadı}}" in contentLow or "{{yapılmadı2}}" in contentLow or "{{yapılmadı ve yapılmayacak}}" in contentLow 
+                pinned = "{{mesaj sabitle}}" in contentLow or "{{pin message}}" in contentLow or "{{mesaj_sabitle}}" in contentLow or "{{pin_message}}" in contentLow
                 not_time = datetime(int(timestamp[:4]), int(timestamp[4:6]), int(timestamp[6:8]), int(timestamp[8:10]), int(timestamp[10:12]), int(timestamp[12:14]))
                 diff = now - not_time
                 currentMonth = monthList[not_time.month-1]
@@ -81,10 +82,13 @@ while 1:
 
                 if resolved:
                     if diff.total_seconds() > 60 * 60 * 12 and youngestDiff.total_seconds() >= 60 * 60 * 12:
-                        summary = 'Sayfa taşıma talebi sonuçlandırılmış - ' + summary_ek
-                        archiveSummary = 'Sonuçlandırılan sayfa taşıma talebi arşivleniyor - ' + summary_ek
-                        mavri.appendtext_on_page(wiki, archivePage, "\n" + content, archiveSummary, xx)
-                        mavri.section_clear(wiki, title, section, summary, xx)
+                        if pinned == False:
+                            summary = 'Sayfa taşıma talebi sonuçlandırılmış - ' + summary_ek
+                            archiveSummary = 'Sonuçlandırılan sayfa taşıma talebi arşivleniyor - ' + summary_ek
+                            mavri.appendtext_on_page(wiki, archivePage, "\n" + content, archiveSummary, xx)
+                            mavri.section_clear(wiki, title, section, summary, xx)
+                        else:
+                            print('Tartışma sabitlenmiş, arşivlenmiyor.')
                     else:
                         print('Talep sonuçlandırılmış ama gereken süre geçmemiş, arşivlenmiyor.')
                 else:

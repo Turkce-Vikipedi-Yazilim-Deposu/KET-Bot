@@ -90,7 +90,7 @@ while 1:
                     mavri.appendtext_on_page(wiki, archivePage.decode('UTF-8'), append, archiveSummary, xx)
                     print(page + ' arşiv sayfasına eklendi.')
 
-                if resolved and youngestDiff.total_seconds() >= 60 * 60 * 24:
+                if resolved and youngestDiff.total_seconds() >= 60 * 60 * 3:
                     summary = 'Sonuçlandırılan SAS arşivleniyor - ' + summary_ek
                     print(page + " SAS sayfasından kaldırılıyor.")
                     newContent = content.replace("{{Vikipedi:Silinmeye aday sayfalar/" + page + "}}", "")
