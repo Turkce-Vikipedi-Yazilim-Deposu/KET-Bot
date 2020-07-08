@@ -12,7 +12,7 @@ import mavri
 wiki = 'tr.wikipedia'
 username = 'Arşivleyici'
 xx = mavri.login(wiki, username)
-title = 'Vikipedi:Devriyelik başvurusu'
+title = 'Kullanıcı:Evrifaessa/sandbox7'
 version = 'V3.0g'
 summary_ek = " (" + username + ", " + version + " running on " + platform.system() + "), ([[Kullanıcı mesaj:Evrifaessa|hata bildir]])"
 section = 1
@@ -75,11 +75,11 @@ while 1:
                     date_time_obj = datetime.strptime(str(match.group()), '%H.%M, %d %B %Y (%Z)')
                     signatureTimes.append(date_time_obj)
                 
-                youngest = min(dt for dt in signatureTimes if dt < now)
+                youngest = max(dt for dt in signatureTimes if dt < now)
                 youngestDiff = now - youngest
 
                 if resolved:
-                    if diff.total_seconds() > 60 * 60 * 72 and youngestDiff.total_seconds() >= 60 * 60 * 24:
+                    if diff.total_seconds() > 60 * 60 * 72 and youngestDiff.total_seconds() >= 60 * 60 * 6:
                         summary = 'Devriyelik başvurusu sonuçladırılmış - ' + summary_ek
                         archiveSummary = 'Sonuçlandırılan devriyelik başvurusu arşivleniyor - ' + summary_ek
                         mavri.section_clear(wiki, title, section, summary, xx)

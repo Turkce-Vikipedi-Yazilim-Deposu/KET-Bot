@@ -76,7 +76,7 @@ while 1:
                     date_time_obj = datetime.strptime(str(match.group()), '%H.%M, %d %B %Y (%Z)')
                     signatureTimes.append(date_time_obj)
                     
-                youngest = min(dt for dt in signatureTimes if dt < now)
+                youngest = max(dt for dt in signatureTimes if dt < now)
                 youngestDiff = now - youngest
 
                 archiveContent = mavri.content_of_page(wiki, archivePage.decode('UTF-8'))

@@ -75,7 +75,7 @@ while 1:
                 date_time_obj = datetime.strptime(str(match.group()), '%H.%M, %d %B %Y (%Z)')
                 signatureTimes.append(date_time_obj)
             
-            youngest = min(dt for dt in signatureTimes if dt < now)
+            youngest = max(dt for dt in signatureTimes if dt < now)
             youngestDiff = now - youngest
 
             if diff.total_seconds() > 60 * 60 * 24 * 15 and youngestDiff.total_seconds() > 60 * 60 * 24:
