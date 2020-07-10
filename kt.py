@@ -82,13 +82,13 @@ while 1:
             hasBeenPreArchived = '{{Vikipedi:Kategori tartışmaları/' + page + '}}' in preArchiveContent
             hasBeenArchived = '{{Vikipedi:Kategori tartışmaları/' + page + '}}' in archiveContent
 
-            if hasBeenArchived == False and hasBeenPreArchived == False and youngestDiff.total_seconds() >= 60 * 60 * 12:
+            if hasBeenArchived == False and hasBeenPreArchived == False:
                 append = '\n' + '{{Vikipedi:Kategori tartışmaları/' + page + '}}'
                 archiveSummary = 'Arşiv sayfalarında bulunmayan KT alt sayfası arşivlere ekleniyor - ' + summary_ek
                 mavri.appendtext_on_page(wiki, archivePage.decode('UTF-8'), append, archiveSummary, xx)
                 print(page + ' arşiv sayfasına eklendi.')
 
-            if resolved:
+            if resolved and youngestDiff.total_seconds() >= 60 * 60 * 12:
                 summary = 'Sonuçlandırılan KT arşivleniyor - ' + summary_ek
                 print(page + " KT sayfasından kaldırılıyor.")
                 newContent = content.replace("{{Vikipedi:Kategori tartışmaları/" + page + "}}", "")
