@@ -25,7 +25,7 @@ while nextpage != 'DONE':
 
         if incele_text.find('diff-multi') == -1:
             diff = incele_text.split('<input id="mw-fr-input-oldid" type="hidden" value="')[1].split('"')[0]
-            print title
+            print title.encode('UTF-8')
             # print diff
             damaging = \
                 requests.get('http://ores.wmflabs.org/v3/scores/trwiki/' + str(diff) + "/damaging").json()["trwiki"]["scores"][str(diff)][
@@ -41,7 +41,7 @@ while nextpage != 'DONE':
                                                                                                                   ',') + ' || ' + str(
                 goodfaith).replace('.', ',')
             if counter % 10 == 0:
-                print mavri.change_page('tr.wikipedia', 'Kullanıcı:Evrifaessa/ORES', RAPOR, 'ORES', xx).text
+                print mavri.change_page('tr.wikipedia', 'Kullanıcı:Evrifaessa/ORES', RAPOR, 'ORES raporu yazılıyor', xx).text
             counter += 1
 RAPOR += '\n|}'
 

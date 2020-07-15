@@ -35,8 +35,35 @@ while 1:
                 not_time = datetime(int(timestamp[:4]), int(timestamp[4:6]), int(timestamp[6:8]), int(timestamp[8:10]), int(timestamp[10:12]), int(timestamp[12:14]))
                 diff = now - not_time
 
+                content2 = content
+
+                content2 = content2.replace("Ocak", "January")
+                content2 = content2.replace("Şubat", "February")
+                content2 = content2.replace("Mart", "March")
+                content2 = content2.replace("Nisan", "April")
+                content2 = content2.replace("Mayıs", "May")
+                content2 = content2.replace("Haziran", "June")
+                content2 = content2.replace("Temmuz", "July")
+                content2 = content2.replace("Ağustos", "August")
+                content2 = content2.replace("Eylül", "September")
+                content2 = content2.replace("Ekim", "October")
+                content2 = content2.replace("Kasım", "November")
+                content2 = content2.replace("Aralık", "December")
+
+                regex = r"\d{2}\.\d{2}\,\s\d{1,2}\s\w+\s\d{4}\s\(UTC\)"
+                matches = re.finditer(regex, content2.decode('UTF-8'), re.MULTILINE)
+
+                signatureTimes = []
+
+                for matchNum, match in enumerate(matches, start=1):
+                    date_time_obj = datetime.strptime(str(match.group()), '%H.%M, %d %B %Y (%Z)')
+                    signatureTimes.append(date_time_obj)
+                
+                youngest = max(dt for dt in signatureTimes if dt < now)
+                youngestDiff = now - youngest
+
                 if resolved:
-                    if diff.total_seconds() > 60 * 60 * 12:
+                    if diff.total_seconds() > 60 * 60 * 12 and youngestDiff.total_seconds() >= 60 * 60 * 3:
                         if pinned == False:
                             summary = 'Sürüm gizleme talebi sonuçlandırılmış - ' + summary_ek
                             mavri.section_clear(wiki, title, section, summary, xx)
@@ -49,4 +76,3 @@ while 1:
             section += 1
         else:
             section = 1
-            time.sleep(10)

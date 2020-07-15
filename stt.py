@@ -81,7 +81,7 @@ while 1:
                 youngestDiff = now - youngest
 
                 if resolved:
-                    if diff.total_seconds() > 60 * 60 * 12 and youngestDiff.total_seconds() >= 60 * 60 * 12:
+                    if diff.total_seconds() > 60 * 60 * 6 and youngestDiff.total_seconds() >= 60 * 60 * 6:
                         if pinned == False:
                             summary = 'Sayfa taşıma talebi sonuçlandırılmış - ' + summary_ek
                             archiveSummary = 'Sonuçlandırılan sayfa taşıma talebi arşivleniyor - ' + summary_ek

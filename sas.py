@@ -10,7 +10,7 @@ import platform
 import mavri
 
 wiki = 'tr.wikipedia'
-username = 'KET Bot'
+username = 'Evrifaessa'
 xx = mavri.login(wiki, username)
 title = 'Vikipedi:Silinmeye aday sayfalar'
 version = 'V3.0g'
