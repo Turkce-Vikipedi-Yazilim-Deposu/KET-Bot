@@ -6,17 +6,20 @@ import socket
 import time
 from datetime import datetime
 import platform
+import pytz
 
 import mavri
 
 wiki = 'tr.wikipedia'
-username = 'Evrifaessa'
+username = 'Arşivleyici'
 xx = mavri.login(wiki, username)
 title = 'Vikipedi:Silinmeye aday sayfalar'
 version = 'V3.0g'
 summary_ek = " (" + username + ", " + version + " running on " + platform.system() + "), ([[Kullanıcı mesaj:Evrifaessa|hata bildir]])"
 ignore_list=[]
 mpa = dict.fromkeys(range(32))
+utc = pytz.timezone('UTC')
+ist = pytz.timezone('Europe/Istanbul')
 
 monthList = [
     'Ocak', 
@@ -34,7 +37,7 @@ monthList = [
 ]
 
 while 1:
-    now = datetime.now()
+    now = datetime.now(ist)
     content = mavri.content_of_page(wiki, title)
 
     regex = r"(?<=Silinmeye aday sayfalar/)[^}]*"
@@ -42,7 +45,7 @@ while 1:
     if content != '{{/Başlık}}' and content != '{{/Başlık}}\n== Tartışmalar ==':
         pages = re.findall(regex.decode('UTF-8'), content)
         for page in pages:
-            try:
+            
                 pageContent = mavri.content_of_page(wiki, "Vikipedi:Silinmeye_aday_sayfalar/" + page.decode('UTF-8'))
                 timestampMonth = monthList[now.month-1]
                 preTimestampMonth = monthList[now.month-2]
@@ -73,7 +76,7 @@ while 1:
                 signatureTimes = []
 
                 for matchNum, match in enumerate(matches, start=1):
-                    date_time_obj = datetime.strptime(str(match.group()), '%H.%M, %d %B %Y (%Z)')
+                    date_time_obj = utc.localize(datetime.strptime(str(match.group()), '%H.%M, %d %B %Y (%Z)'))
                     signatureTimes.append(date_time_obj)
                     
                 youngest = max(dt for dt in signatureTimes if dt < now)
@@ -90,12 +93,11 @@ while 1:
                     mavri.appendtext_on_page(wiki, archivePage.decode('UTF-8'), append, archiveSummary, xx)
                     print(page + ' arşiv sayfasına eklendi.')
 
-                if resolved and youngestDiff.total_seconds() >= 60 * 60 * 3:
+                if resolved and youngestDiff.total_seconds() >= 3600:
                     summary = 'Sonuçlandırılan SAS arşivleniyor - ' + summary_ek
                     print(page + " SAS sayfasından kaldırılıyor.")
                     newContent = content.replace("{{Vikipedi:Silinmeye aday sayfalar/" + page + "}}", "")
                     mavri.change_page(wiki, title, newContent, summary, xx)
-            except:
-                pass
+            
     else:
         time.sleep(60)
