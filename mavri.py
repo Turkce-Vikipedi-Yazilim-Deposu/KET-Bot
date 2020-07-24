@@ -11,9 +11,21 @@ import requests
 reload(sys)
 sys.setdefaultencoding('UTF8')
 
+import sentry_sdk
+
+full_path = os.path.realpath(__file__)
+
+with open(os.path.dirname(full_path) + '/.pass') as data_file:
+    data = json.load(data_file)
+    try:
+        sentry_start = data["sentry_start".decode('UTF-8')]
+        sentry_end = data["sentry_end".decode('UTF-8')]
+        if sentry_start and sentry_end:
+            sentry_sdk.init("https://" + sentry_start + ".ingest.sentry.io/" + sentry_end)
+    except:
+        pass
 
 def login(wiki, username):
-    full_path = os.path.realpath(__file__)
     with open(os.path.dirname(full_path) + '/.pass') as data_file:
         data = json.load(data_file)
     passw = data[username.decode('UTF-8')].decode('base64').decode('base64').decode('base64').decode('UTF-8')

@@ -45,7 +45,7 @@ while 1:
                 timestamp = timestamp[0]
                 informer = informer[0]
                 contentLow = content.lower()
-                resolved = "{{yapıldı}}" in contentLow or "{{done}}" in contentLow or "{{yapılmadı}}" in contentLow or "{{yapılmadı2}}" in contentLow or "{{yapılmadı ve yapılmayacak}}" in contentLow 
+                resolved = "{{yapıldı" in contentLow or "{{done" in contentLow or "{{yapılmadı" in contentLow or "{{yapılmadı2" in contentLow or "{{yapılmadı ve yapılmayacak" in contentLow 
                 pinned = "{{mesaj sabitle}}" in contentLow or "{{pin message}}" in contentLow or "{{mesaj_sabitle}}" in contentLow or "{{pin_message}}" in contentLow
                 not_time = datetime(int(timestamp[:4]), int(timestamp[4:6]), int(timestamp[6:8]), int(timestamp[8:10]), int(timestamp[10:12]), int(timestamp[12:14]))
                 diff = now - not_time
