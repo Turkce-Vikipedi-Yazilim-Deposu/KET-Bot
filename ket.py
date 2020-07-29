@@ -78,7 +78,7 @@ while 1:
                         timestamp = blocked.json()['query']['blocks'][0]['timestamp']
                         blocked_time = datetime(int(timestamp[:4]), int(timestamp[5:7]), int(timestamp[8:10]), int(timestamp[11:13]), int(timestamp[14:16]), int(timestamp[17:19]))
                         blocked_now = datetime_now - blocked_time
-                        elapsed_time = str(blocked_time - not_time).replace('days,', 'gün')
+                        elapsed_time = str(blocked_time - not_time).replace('days,', 'gün').replace('day,', 'gün')
                         by = blocked.json()['query']['blocks'][0]['by']
                         reason = blocked.json()['query']['blocks'][0]['reason']
 
