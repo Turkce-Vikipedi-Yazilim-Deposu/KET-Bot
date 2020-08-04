@@ -45,7 +45,7 @@ while 1:
     if content != '{{/Başlık}}' and content != '{{/Başlık}}\n== Tartışmalar ==':
         pages = re.findall(regex.decode('UTF-8'), content)
         for page in pages:
-            
+            try:
                 pageContent = mavri.content_of_page(wiki, "Vikipedi:Silinmeye_aday_sayfalar/" + page.decode('UTF-8'))
                 timestampMonth = monthList[now.month-1]
                 preTimestampMonth = monthList[now.month-2]
@@ -54,6 +54,7 @@ while 1:
                 preArchivePage = "Vikipedi:Silinmeye_aday_sayfalar/Kayıt/" + str(timestampYear) + "_" + str(preTimestampMonth)
                 contentLow = pageContent.lower()
                 resolved = '{{sas son}}' in contentLow
+                pinned = "{{mesaj sabitle" in contentLow or "{{pin message" in contentLow or "{{mesaj_sabitle" in contentLow or "{{pin_message" in contentLow
 
                 content2 = pageContent
 
@@ -93,11 +94,15 @@ while 1:
                     mavri.appendtext_on_page(wiki, archivePage.decode('UTF-8'), append, archiveSummary, xx)
                     print(page + ' arşiv sayfasına eklendi.')
 
-                if resolved and youngestDiff.total_seconds() >= 3600:
-                    summary = 'Sonuçlandırılan SAS arşivleniyor - ' + summary_ek
-                    print(page + " SAS sayfasından kaldırılıyor.")
-                    newContent = content.replace("{{Vikipedi:Silinmeye aday sayfalar/" + page + "}}", "")
-                    mavri.change_page(wiki, title, newContent, summary, xx)
-            
+                if pinned == False:
+                    if resolved and youngestDiff.total_seconds() >= 3600:
+                        summary = 'Sonuçlandırılan SAS arşivleniyor - ' + summary_ek
+                        print(page + " SAS sayfasından kaldırılıyor.")
+                        newContent = content.replace("{{Vikipedi:Silinmeye aday sayfalar/" + page + "}}", "")
+                        mavri.change_page(wiki, title, newContent, summary, xx)
+                else:
+                    print(page + ' sabitlenmiş.')
+            except ValueError:
+                pass
     else:
         time.sleep(60)

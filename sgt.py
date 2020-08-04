@@ -63,7 +63,7 @@ while 1:
                 youngestDiff = now - youngest
 
                 if resolved:
-                    if diff.total_seconds() > 60 * 60 * 12 and youngestDiff.total_seconds() >= 60 * 60 * 3:
+                    if diff.total_seconds() > 60 * 60 * 3 and youngestDiff.total_seconds() >= 60 * 15:
                         if pinned == False:
                             summary = 'Sürüm gizleme talebi sonuçlandırılmış - ' + summary_ek
                             mavri.section_clear(wiki, title, section, summary, xx)
