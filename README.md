@@ -14,22 +14,4 @@ KET Bot archives [ARV requests](https://tr.wikipedia.org/wiki/VP:KET) in [Turkis
 * Copyright © 2020 Evrifaessa
 * This project uses [Mavrikant](https://tr.wikipedia.org/wiki/User:Mavrikant)'s Mavri.py mini-library to connect to MediaWiki API.
 
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/evrifaessa"><img src="https://avatars2.githubusercontent.com/u/35808275?v=4" width="100px;" alt=""/><br /><sub><b>Yağızhan</b></sub></a><br /><a href="#infra-evrifaessa" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/Turkce-Vikipedi-Yazilim-Deposu/KET-Bot/commits?author=evrifaessa" title="Tests">⚠️</a> <a href="https://github.com/Turkce-Vikipedi-Yazilim-Deposu/KET-Bot/commits?author=evrifaessa" title="Code">💻</a></td>
-    <td align="center"><a href="http://karaman.dev"><img src="https://avatars1.githubusercontent.com/u/7313603?v=4" width="100px;" alt=""/><br /><sub><b>M. Serdar Karaman</b></sub></a><br /><a href="https://github.com/Turkce-Vikipedi-Yazilim-Deposu/KET-Bot/commits?author=Mavrikant" title="Code">💻</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
