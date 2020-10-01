@@ -92,7 +92,7 @@ while 1:
                         ignore_page=mavri.content_of_page('tr.wikipedia', 'Kullanıcı:KET Bot/Yoksay')
                         ignore_list= re.split('\s*\*\s*', ignore_page)
                         if informer not in ignore_list and informer not in localignorelist and blocked_now.seconds / 900 >= 1:
-                            message = '\n\n== Kullanıcı Engel Talebi bildirimi ==\nMerhaba. [[Özel:Katkılar/' + vandal + '|' + vandal + ']], siz bildirim yaptıktan ' + elapsed_time + ' saat sonra [[Kullanıcı mesaj:' + by + '|' + by + ']] tarafından engellendi. Engel açıklaması :' + reason + '. Bildirimde bulunduğunuz için teşekkürler.--~~~~'
+                            message = '\n\n== Kullanıcı Engel Talebi bildirimi ==\nMerhaba. [[Özel:Katkılar/' + vandal + '|' + vandal + ']], siz bildirim yaptıktan ' + elapsed_time + ' saat sonra [[Kullanıcı mesaj:' + by + '|' + by + ']] tarafından engellendi. Engel açıklaması :' + reason.replace('{{', "{{tl|") + '. Bildirimde bulunduğunuz için teşekkürler.--~~~~'
                             summary = '[[Özel:Katkılar/' + vandal + '|' + vandal + ']], [[Kullanıcı mesaj:' + by + '|' + by + ']] tarafından engellendi.' + summary_ek
                             mavri.send_message(wiki, 'Kullanıcı mesaj:' + informer, message, summary, xx)
                     else:
