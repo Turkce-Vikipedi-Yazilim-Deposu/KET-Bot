@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "evrifaessa",
+      "name": "Yağızhan",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/35808275?v=4",
+      "profile": "https://github.com/evrifaessa",
+      "contributions": [
+        "infra",
+        "test",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "KET-Bot",
+  "projectOwner": "Turkce-Vikipedi-Yazilim-Deposu",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
