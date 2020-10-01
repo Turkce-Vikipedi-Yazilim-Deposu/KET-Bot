@@ -5,6 +5,7 @@ KET Bot archives [ARV requests](https://tr.wikipedia.org/wiki/VP:KET) in [Turkis
 
 ## Developers
 * [Evrifaessa](https://tr.wikipedia.org/wiki/User:Evrifaessa)
+* [Mavrikant](https://tr.wikipedia.org/wiki/User:Mavrikant)
 
 ## License
 * This project is licensed under the terms of the [MIT License](https://choosealicense.com/licenses/mit/)
