@@ -70,8 +70,10 @@ while 1:
                     for matchNum, match in enumerate(matches, start=1):
                         date_time_obj = datetime.strptime(str(match.group()), '%H.%M, %d %B %Y (%Z)')
                         signatureTimes.append(date_time_obj)
-                
-                    youngest = max(dt for dt in signatureTimes if dt < now)
+                    try:
+                        youngest = max(dt for dt in signatureTimes if dt < now)
+                    except:
+                        youngest = now
                     youngestDiff = now - youngest
 
                     if blocked.json()['query']['blocks']:
