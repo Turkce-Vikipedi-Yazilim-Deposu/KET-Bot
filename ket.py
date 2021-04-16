@@ -72,7 +72,7 @@ while 1:
                         signatureTimes.append(date_time_obj)
                     try:
                         youngest = max(dt for dt in signatureTimes if dt < now)
-                    except:
+                    except ValueError:
                         youngest = now
                     youngestDiff = now - youngest
 
