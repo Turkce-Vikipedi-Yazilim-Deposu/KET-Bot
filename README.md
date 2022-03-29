@@ -9,5 +9,4 @@ KET Bot archives [ARV requests](https://tr.wikipedia.org/wiki/VP:KET) in [Turkis
 
 ## License
 * This project is licensed under the terms of the [MIT License](https://choosealicense.com/licenses/mit/)
-* Copyright © 2020 Evrifaessa
 * This project uses [Mavrikant](https://tr.wikipedia.org/wiki/User:Mavrikant)'s Mavri.py mini-library to connect to MediaWiki API.
